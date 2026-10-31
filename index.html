@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>E-portfolio – Benjamin Maillard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6ef;--surface:#ffffff;--ink:#1f2d1c;--muted:#51604b;--line:#d3dcc9;--accent:#4f7241;--accent-ink:#ffffff;--soft:#e2ebd9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141b12;--surface:#1c2519;--ink:#eef3ea;--muted:#a6b39f;--line:#2f3c2a;--accent:#89ac76;--accent-ink:#10190d;--soft:#243320}}
+:root[data-theme="dark"]{--bg:#141b12;--surface:#1c2519;--ink:#eef3ea;--muted:#a6b39f;--line:#2f3c2a;--accent:#89ac76;--accent-ink:#10190d;--soft:#243320}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;border-top:8px solid #89ac76;background:var(--bg);color:var(--ink);font:400 1rem/1.65 "Public Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2rem,6vw,3.4rem);font-weight:700}
+h2{font-size:1.7rem;font-weight:700}
+h3{font-size:1.15rem;font-weight:500}
+p{margin:0 0 1em;max-width:68ch}
+header{position:sticky;top:0;z-index:10;max-width:960px;margin:0 auto;padding:1rem 1.25rem 0;background:var(--bg)}
+.brand{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:700;font-size:1.1rem;margin-bottom:1rem}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem}
+.topbar .brand{margin:0}
+.actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:.5rem}
+.btn{border:1px solid var(--accent);color:var(--ink);text-decoration:none;font:600 .85rem "Public Sans",system-ui,sans-serif;padding:.3rem .85rem;border-radius:999px}
+.btn:hover{background:var(--accent);color:var(--accent-ink)}
+footer{max-width:960px;margin:0 auto;padding:1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+footer a{color:var(--ink)}
+button.btn{background:none;cursor:pointer}
+.cvs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.switch{display:flex;align-items:center;gap:.5rem;background:none;border:0;color:var(--muted);font:500 .85rem "Public Sans",system-ui,sans-serif;cursor:pointer;padding:.25rem;border-radius:999px}
+.track{width:44px;height:24px;border-radius:999px;background:var(--soft);border:1px solid var(--accent);position:relative;flex:none}
+.knob{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--accent)}
+.switch[aria-checked=true] .knob{transform:translateX(20px)}
+@media (prefers-reduced-motion:no-preference){.knob{transition:transform .2s}}
+[role=tablist]{display:flex;gap:.25rem;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:thin}
+[role=tab]{flex:none;background:none;border:0;border-bottom:3px solid transparent;color:var(--muted);font:500 .95rem "Public Sans",system-ui,sans-serif;padding:.75rem 1rem;cursor:pointer}
+[role=tab]:hover{color:var(--ink)}
+[role=tab][aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{max-width:960px;margin:0 auto;padding:2rem 1.25rem 4rem}
+[role=tabpanel][hidden]{display:none}
+.hero{display:grid;grid-template-columns:1fr 200px;gap:2rem;align-items:center;margin-bottom:2rem}
+.photo{width:200px;height:200px;border-radius:50%;background:var(--soft);border:2px solid var(--accent);display:block;object-fit:cover;object-position:center 38%}
+.lead{font-size:1.15rem;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1.25rem}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.25rem}
+.item p{margin:0 0 .6em;color:var(--muted);font-size:.95rem}
+.tag{display:inline-block;background:var(--soft);color:var(--ink);border-radius:999px;font-size:.78rem;font-weight:600;padding:.15rem .65rem;margin:0 .35rem .35rem 0}
+.todo{border-left:4px solid var(--accent);background:var(--soft);padding:.75rem 1rem;border-radius:0 8px 8px 0;font-size:.92rem;margin-bottom:1.5rem;max-width:68ch}
+ul{padding-left:1.2rem;margin:0 0 1em;color:var(--muted)}
+.timeline{border-left:2px solid var(--line);padding-left:1.25rem;margin-top:1rem}
+.timeline .item{margin-bottom:1rem}
+.project-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;margin:.25rem 0 1rem}
+.mobility-visuals{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(180px,.75fr);gap:1rem;align-items:center;margin-top:1.25rem}
+.mobility-logo{display:block;width:100%;max-width:380px;height:auto;object-fit:contain}
+.mobility-map{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:6px}
+html[lang="fr"] .translation-en{display:none}
+html:not([lang="fr"]) .translation-fr{display:none}
+.video{aspect-ratio:16/9;width:100%;max-width:720px;border-radius:10px;overflow:hidden;background:#101010;display:block}
+.video iframe,.video video{width:100%;height:100%;border:0;display:block}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.photo{order:-1;width:140px;height:140px}.mobility-visuals{grid-template-columns:1fr}.mobility-logo{max-width:320px;margin:0 auto}.mobility-map{max-width:360px}}
+@media (prefers-reduced-motion:no-preference){[role=tabpanel]{animation:in .25s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}}
+</style>
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">Benjamin Maillard · E-portfolio</div>
+    <div class="actions"><button class="btn" id="lang" type="button" aria-label="Passer en français">FR</button><button class="switch" id="theme" role="switch" aria-checked="false" aria-label="Dark mode"><span>Dark mode</span><span class="track"><span class="knob"></span></span></button></div>
+  </div>
+  <div role="tablist" aria-label="Portfolio sections">
+    <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Welcome</button>
+    <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Engineering courses</button>
+    <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Civic Engagement</button>
+    <button role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Mobility</button>
+    <button role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Careers</button>
+    <button role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">Sports and interests</button>
+  </div>
+</header>
+<main>
+
+<section role="tabpanel" id="p0" aria-labelledby="t0">
+  <div class="hero">
+    <div>
+      <h1>Hello, I’m Benjamin Maillard.</h1>
+      <p class="lead">First-year student at <strong>ENSEEIHT</strong> specialising in Electronics, Electrical Energy &amp; Automation (3EA), after a <strong>DUT in Physical Measurements</strong>.</p>
+    </div>
+    <img class="photo" src="photo%20principale.jpg" alt="Portrait de Benjamin Maillard">
+  </div>
+  <div class="cvs"><a class="btn" href="BENJAMIN%20MAILLARD%20English%20CV%202027.pdf" target="_blank" rel="noopener">CV · English</a><a class="btn" href="BENJAMIN%20MAILLARD%20CV%202027.pdf" target="_blank" rel="noopener">CV · Français</a></div>
+  <h2>My introduction video</h2>
+  <div class="video">
+    <video controls playsinline preload="metadata" aria-label="Introduction video">
+      <source src="Vid%C3%A9o%20intro%20CAM.mp4" type="video/mp4">
+      <a href="Vid%C3%A9o%20intro%20CAM.mp4">Download the video.</a>
+    </video>
+  </div>
+</section>
+
+<section role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+  <h2>Engineering courses (projects)</h2>
+  <div class="timeline">
+    <article class="item">
+      <h3>Development of a user interface for a laboratory lysimeter system</h3>
+      <p><strong>13 April–3 July 2026</strong> · Internship · Forschungszentrum Jülich, Germany</p>
+      <img class="project-image" src="photo%20lysimeter.jpg" alt="Laboratory lysimeter system at Forschungszentrum Jülich">
+      <p>During my internship at Forschungszentrum Jülich, I developed a user interface in LabVIEW that communicates through a dedicated instrument driver with the DataTaker DT80 data logger controlling the system.</p>
+      <a class="btn" href="Internship%20report%20Forschungzentrum%20J%C3%BClich%20Benjamin%20MAILLARD.pdf" target="_blank" rel="noopener">Learn more</a>
+      <div><span class="tag">LabVIEW</span><span class="tag">User interface</span><span class="tag">Instrumentation</span></div>
+    </article>
+    <article class="item">
+      <h3>Development of an automated steering system</h3>
+      <p><strong>February–June 2025</strong> · Student project · DUT Applied Physics</p>
+      <p>The goal of this project was to build a miniature boat capable of navigating an obstacle course autonomously and as quickly as possible.</p>
+      <p>My role was to develop an autonomous steering system for the vehicle.</p>
+      <p>I built a sonar system using a servo motor, an ultrasonic sensor, a LiDAR sensor and an Arduino Nano. I made the necessary connections and programmed the Arduino to operate the system.</p>
+      <p>Switching between ultrasonic and LiDAR measurements made it possible to adapt speed and accuracy to the distance of each detected obstacle.</p>
+      <div><span class="tag">Arduino</span><span class="tag">Instrumentation</span><span class="tag">Team work</span></div>
+    </article>
+  </div>
+</section>
+
+<section role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+  <h2>Civic Engagement</h2>
+  <div class="grid">
+    <article class="item">
+      <h3>Facilitator of an environmental awareness workshop</h3>
+      <p>During the “Futur Proche” festival, organized by the University of Toulouse, I facilitated an awareness workshop on the nine planetary boundaries, introducing the topic to young students.</p>
+    </article>
+    <article class="item">
+      <h3>Fencing referee for the CEC</h3>
+      <p>I volunteered as a referee for the fencing club in Castres. This taught me to remain impartial and observant in high-pressure situations.</p>
+    </article>
+  </div>
+</section>
+
+<section role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+  <h2>Mobility</h2>
+  <article class="item">
+    <h3>Internship at Forschungszentrum Jülich, Germany</h3>
+    <p><strong>April 13–July 3, 2026</strong></p>
+    <p>During this internship, I worked on controlling a lysimeter measurement system through a user interface and automating its measurements.</p>
+    <div class="mobility-visuals">
+      <img class="mobility-logo" src="logo%20FZJ.webp" alt="Forschungszentrum Jülich">
+      <img class="mobility-map" src="map%20julich.jpg" alt="Map showing Jülich in Germany, near Belgium, the Netherlands and France">
+    </div>
+  </article>
+  <h2 style="margin-top:2rem"><span class="translation-en">Mobility plan</span><span class="translation-fr">Projet de mobilité</span></h2>
+  <p><span class="translation-en">My main goal is to do an internship or a semester in the electronics field. I want to do it in <strong>Japan</strong>, <strong>Norway</strong> or <strong>Sweden</strong> to take advantage of this opportunity to travel and discover a new culture outside of Europe.</span><span class="translation-fr">Mon objectif principal est d’effectuer un stage ou un semestre dans le domaine de l’électronique. Je souhaite le faire au <strong>Japon</strong>, en <strong>Norvège</strong> ou en <strong>Suède</strong> afin de profiter de cette occasion pour voyager et découvrir une nouvelle culture en dehors de l’Europe.</span></p>
+</section>
+
+<section role="tabpanel" id="p4" aria-labelledby="t4" hidden>
+  <h2>Careers</h2>
+  <p>My experience combines research instrumentation and hospitality. During my internship at Forschungszentrum Jülich, I contributed to the control of a lysimeter measurement system, the development of a LabVIEW user interface and database, and sensor checks. I also worked as a kitchen assistant and dishwasher at La Villa St Jean.</p>
+  <div class="grid">
+    <article class="item">
+      <h3>Research Lab Intern</h3>
+      <p><strong>Forschungszentrum Jülich</strong> · Jülich, Germany</p>
+      <p>April–July 2026</p>
+      <p>Worked on a laboratory lysimeter system, including its control interface, database and sensor checks.</p>
+    </article>
+    <article class="item">
+      <h3>Kitchen Assistant</h3>
+      <p><strong>La Villa St Jean</strong> · Les Sables-d'Olonne, France</p>
+      <p>July–August 2025</p>
+      <p>Prepared dishes and plated meals in a fine-dining restaurant.</p>
+    </article>
+    <article class="item">
+      <h3>Dishwasher</h3>
+      <p><strong>La Villa St Jean</strong> · Les Sables-d'Olonne, France</p>
+      <p>July–August 2024</p>
+      <p>Handled cleaning and maintenance in the restaurant.</p>
+    </article>
+  </div>
+  <h2 style="margin-top:2rem">Contact</h2>
+  <p><a href="mailto:benjamin.maillard.81@gmail.com">benjamin.maillard.81@gmail.com</a><br><a href="tel:+33767778847">07 67 77 88 47</a></p>
+  <div class="cvs"><a class="btn" href="Benjamin%20Maillard%20English%20CV%202027.pdf" target="_blank" rel="noopener">CV · English</a><a class="btn" href="Benjamin%20Maillard%20CV%202027.pdf" target="_blank" rel="noopener">CV · Français</a></div>
+</section>
+
+<section role="tabpanel" id="p5" aria-labelledby="t5" hidden>
+  <h2>Sports and interests</h2>
+  <div class="grid">
+    <article class="item"><h3>Sports</h3><ul><li>Fencing</li><li>Basketball</li><li>Climbing</li></ul></article>
+    <article class="item"><h3>Cinema and audiovisual</h3><p>Involvement in 7ème Art and TVn7.</p></article>
+  </div>
+</section>
+
+</main>
+<footer>© Benjamin Maillard · Student portfolio</footer>
+<script>
+(function(){
+  var root=document.documentElement,sw=document.getElementById('theme');
+  function apply(d){root.setAttribute('data-theme',d?'dark':'light');sw.setAttribute('aria-checked',d?'true':'false')}
+  var saved=null;try{saved=localStorage.getItem('theme')}catch(e){}
+  apply(saved?saved==='dark':false);
+  sw.addEventListener('click',function(){
+    var d=sw.getAttribute('aria-checked')!=='true';
+    apply(d);
+    try{localStorage.setItem('theme',d?'dark':'light')}catch(e){}
+  });
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function show(i,focus){
+    tabs.forEach(function(t,j){
+      var on=i===j;
+      t.setAttribute('aria-selected',on);
+      t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(focus)tabs[i].focus();
+    try{history.replaceState(null,'','#'+tabs[i].getAttribute('aria-controls'))}catch(e){}
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i)});
+    t.addEventListener('keydown',function(e){
+      var n=null;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+      if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      if(e.key==='Home')n=0;
+      if(e.key==='End')n=tabs.length-1;
+      if(n!==null){e.preventDefault();show(n,true)}
+    });
+  });
+  var FR={
+'Benjamin Maillard · E-portfolio':'Benjamin Maillard · E-portfolio','Dark mode':'Mode sombre',
+'Welcome':'Accueil','Engineering courses':'Cours d’ingénierie','Civic Engagement':'Engagement citoyen','Mobility':'Mobilité','Careers':'Carrières','Sports and interests':'Sports et centres d’intérêt',
+'Hello, I’m Benjamin Maillard.':'Bonjour, je suis Benjamin Maillard.',
+'First-year student at':'Étudiant en première année à l’','specialising in Electronics, Electrical Energy & Automation (3EA), after a':', spécialisé en électronique, énergie électrique et automatique (3EA), après un','DUT in Physical Measurements':'DUT Mesures Physiques',
+'Add your photo here':'Ajoutez votre photo ici','About me':'À propos de moi',
+'I am currently in my first year at engineering school, specialising in 3EA. I am building my engineering skills through my coursework and projects.':'Je suis actuellement en première année d’école d’ingénieurs, spécialisé en 3EA. Je développe mes compétences d’ingénieur à travers mes cours et mes projets.',
+'My introduction video':'Ma vidéo de présentation','Download the video.':'Télécharger la vidéo.',
+'Engineering courses (projects)':'Cours d’ingénierie (projets)',
+'Development of a user interface for a laboratory lysimeter system':'Développement d’une interface utilisateur pour un système lysimétrique de laboratoire',
+'13 April–3 July 2026':'13 avril–3 juillet 2026','· Internship · Forschungszentrum Jülich, Germany':'· Stage · Forschungszentrum Jülich, Allemagne',
+'During my internship at Forschungszentrum Jülich, I developed a user interface in LabVIEW that communicates through a dedicated instrument driver with the DataTaker DT80 data logger controlling the system.':'Pendant mon stage au Forschungszentrum Jülich, j’ai développé une interface utilisateur sous LabVIEW, qui communique avec l’enregistreur de données DataTaker DT80 pilotant le système via un pilote dédié.',
+'Learn more':'En savoir plus','User interface':'Interface utilisateur',
+'Development of an automated steering system':'Développement d’un système de direction automatisé',
+'February–June 2025':'Février–juin 2025','· Student project · DUT Applied Physics':'· Projet étudiant · BUT Mesures Physiques',
+'The goal of this project was to build a miniature boat capable of navigating an obstacle course autonomously and as quickly as possible.':'L’objectif de ce projet était de concevoir un bateau miniature capable de parcourir un circuit d’obstacles de manière autonome et le plus rapidement possible.',
+'My role was to develop an autonomous steering system for the vehicle.':'Mon rôle était de développer un système de direction autonome pour ce véhicule.',
+'I built a sonar system using a servo motor, an ultrasonic sensor, a LiDAR sensor and an Arduino Nano. I made the necessary connections and programmed the Arduino to operate the system.':'J’ai réalisé un système sonar à l’aide d’un servomoteur, d’un capteur à ultrasons, d’un capteur LiDAR et d’une carte Arduino Nano. J’ai effectué les branchements nécessaires et programmé la carte Arduino pour assurer cette fonction.',
+'Switching between ultrasonic and LiDAR measurements made it possible to adapt speed and accuracy to the distance of each detected obstacle.':'L’alternance entre les mesures du capteur à ultrasons et du LiDAR permettait d’adapter la rapidité et la précision des mesures selon la distance de l’obstacle détecté.',
+'Team work':'Travail d’équipe',
+'Facilitator of an environmental awareness workshop':'Animateur d’un atelier de sensibilisation à l’environnement',
+'During the “Futur Proche” festival, organized by the University of Toulouse, I facilitated an awareness workshop on the nine planetary boundaries, introducing the topic to young students.':'Lors du festival « Futur Proche », organisé par l’Université de Toulouse, j’ai animé un atelier de sensibilisation aux neuf limites planétaires afin de faire découvrir ce sujet à de jeunes élèves.',
+'Fencing referee for the CEC':'Arbitre d’escrime pour le CEC',
+'I volunteered as a referee for the fencing club in Castres. This taught me to remain impartial and observant in high-pressure situations.':'J’ai été arbitre bénévole pour le club d’escrime de Castres. Cette expérience m’a appris à rester impartial et attentif dans des situations sous pression.',
+'Internship at Forschungszentrum Jülich, Germany':'Stage au Forschungszentrum Jülich, en Allemagne',
+'April 13–July 3, 2026':'13 avril–3 juillet 2026',
+'During this internship, I worked on controlling a lysimeter measurement system through a user interface and automating its measurements.':'Pendant ce stage, j’ai travaillé sur le pilotage d’un système de mesure lysimétrique via une interface utilisateur, ainsi que sur l’automatisation de ses mesures.',
+'My experience combines research instrumentation and hospitality. During my internship at Forschungszentrum Jülich, I contributed to the control of a lysimeter measurement system, the development of a LabVIEW user interface and database, and sensor checks. I also worked as a kitchen assistant and dishwasher at La Villa St Jean.':'Mon expérience combine instrumentation de recherche et restauration. Lors de mon stage au Forschungszentrum Jülich, j’ai contribué au pilotage d’un système lysimétrique, au développement d’une interface utilisateur sous LabVIEW et d’une base de données, ainsi qu’à la vérification des capteurs. J’ai également travaillé comme commis de cuisine et plongeur à La Villa St Jean.',
+'Research Lab Intern':'Stagiaire en laboratoire de recherche','· Jülich, Germany':'· Jülich, Allemagne',
+'Research Lab Intern · Forschungszentrum Jülich':'Stagiaire en laboratoire de recherche · Forschungszentrum Jülich','April–July 2026':'Avril–juillet 2026',
+'Worked on a laboratory lysimeter system, including its control interface, database and sensor checks.':'Participation au fonctionnement d’un système lysimétrique de laboratoire, à son interface de contrôle, à sa base de données et à la vérification de ses capteurs.',
+'Kitchen Assistant':'Commis de cuisine','La Villa St Jean · Les Sables-d\'Olonne, France':'La Villa St Jean · Les Sables-d’Olonne, France',
+'Kitchen Assistant · La Villa St Jean':'Commis de cuisine · La Villa St Jean','July–August 2025':'Juillet–août 2025','Prepared dishes and plated meals in a fine-dining restaurant.':'Préparation des plats et dressage des assiettes dans un restaurant gastronomique.',
+'Dishwasher':'Plongeur',
+'Dishwasher · La Villa St Jean':'Plongeur · La Villa St Jean','July–August 2024':'Juillet–août 2024','Handled cleaning and maintenance in the restaurant.':'Travaux de nettoyage et d’entretien dans le restaurant.',
+'[Your professional project: the sector, the type of role and the reasons behind your choice.]':'[Votre projet professionnel : le secteur, le type de poste et les raisons de votre choix.]',
+'Experience':'Expérience','[Internship / job · company · dates]':'[Stage / emploi · entreprise · dates]','[Mission]':'[Mission]','[Result or skill gained]':'[Résultat ou compétence acquise]',
+'Skills':'Compétences','[Technical skill]':'[Compétence technique]','[Software]':'[Logiciel]','[Languages: French, English…]':'[Langues : français, anglais…]','[Soft skill]':'[Compétence comportementale]',
+'Next steps':'Prochaines étapes','[Short term: internship, master’s…]':'[Court terme : stage, master…]','[Medium term: first job]':'[Moyen terme : premier emploi]','[Long term: vision]':'[Long terme : vision]',
+'Contact':'Contact','[Email] · [LinkedIn link] · [CV download link]':'[E-mail] · [Lien LinkedIn] · [Lien du CV]',
+'CV · English':'CV · Anglais','CV · Français':'CV · Français',
+'Sports and interests':'Sports et centres d’intérêt','Fencing':'Escrime','Basketball':'Basket-ball','Climbing':'Escalade',
+'Cinema and audiovisual':'Cinéma et audiovisuel','Involvement in 7ème Art and TVn7.':'Implication dans le 7ème art et TVn7.',
+'© Benjamin Maillard · Student portfolio':'© Benjamin Maillard · Portfolio étudiant'};
+  var lb=document.getElementById('lang'),nodes=[],w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),nd;
+  while(nd=w.nextNode()){if(nd.nodeValue.trim()&&nd.parentNode.tagName!=='SCRIPT'&&nd.parentNode.id!=='lang')nodes.push({n:nd,o:nd.nodeValue})}
+  function setLang(l){
+    nodes.forEach(function(x){
+      var k=x.o.replace(/\s+/g,' ').trim(),t=l==='fr'?FR[k]:null;
+      x.n.nodeValue=t?x.o.match(/^\s*/)[0]+t+x.o.match(/\s*$/)[0]:x.o;
+    });
+    document.documentElement.lang=l;
+    document.title='E-portfolio – Benjamin Maillard';
+    sw.setAttribute('aria-label',l==='fr'?'Mode sombre':'Dark mode');
+    lb.textContent=l==='fr'?'EN':'FR';
+    lb.setAttribute('aria-label',l==='fr'?'Switch to English':'Passer en français');
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  var sl=null,languageDefaultUpdated=false;
+  try{
+    languageDefaultUpdated=localStorage.getItem('language-default-en')==='true';
+    if(languageDefaultUpdated)sl=localStorage.getItem('lang');
+    else localStorage.setItem('language-default-en','true');
+  }catch(e){}
+  setLang(sl==='fr'?'fr':'en');
+  lb.addEventListener('click',function(){setLang(document.documentElement.lang==='fr'?'en':'fr')});
+  var h=location.hash.replace('#','');
+  tabs.forEach(function(t,i){if(t.getAttribute('aria-controls')===h)show(i)});
+})();
+</script>
+</body>
+</html>
